@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Developertest.Models.TeacherSubjects>
+
+<h1>Subjects and Their Teachers</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Teachers</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SubjectName</td>
+                <td>
+                    @foreach (var teacher in item.Teachers)
+                    {
+                        <div>@teacher.Name</div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

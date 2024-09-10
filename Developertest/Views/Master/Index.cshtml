@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* Container styling */
+        .container {
+            margin: 0 auto;
+            padding: 30px;
+            max-width: 1200px;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .container_outer{
+            margin: 0 auto;
+            padding: 30px;
+            max-width: 1200px;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            box-shadow: 3px 4px 22px -2px #858181;
+            background: #fff;
+            border-radius: 15px;
+        }
+     
+        /* Sidebar styling */
+        .sidebar {
+            width: 50vw;
+            padding: 2px;
+          
+            border-radius: 12px;
+           
+        }
+
+            .sidebar h3 {
+                font-size: 24px;
+                color: #343a40;
+                margin-bottom: 20px;
+            }
+
+        .action_wrapper{
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .action_item{
+            width: 33%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .accordion {
+            border: none;
+            background: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+            .accordion:hover {
+                background-color: #e9ecef;
+            }
+
+            .accordion:after {
+                content: '▶';
+                float: right;
+                transition: transform 0.3s ease;
+            }
+
+            .accordion.active:after {
+                content: '▼';
+                transform: rotate(90deg);
+            }
+
+        .panel {
+            display: none;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; 
+        }
+
+            .btn-group a {
+                padding: 10px 20px; 
+                font-size: 16px; 
+                font-weight: bold;
+                border-radius: 8px;
+                transition: all 0.4s ease;
+                text-decoration: none;
+                color: white;
+                text-align: center;
+            }
+
+                .btn-group a:hover {
+                    transform: translateY(-3px); 
+                    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); 
+                }
+
+        /* Gradient buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: none;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            border: none;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745, #218838);
+            border: none;
+        }
+
+        /* Main content styling */
+        .main-content {
+            flex: 1;
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+            .main-content h2 {
+                font-size: 36px;
+                color: #343a40;
+                margin-bottom: 40px;
+            }
+
+      
+    </style>
+</head>
+<body>
+    <div class="container_outer">
+        <div class="sidebar">
+            <h3>Actions</h3>
+            <div class="action_wrapper">
+             <div class="action_item">
+                    <button class="accordion">Student</button>
+                    <div class="panel">
+                        <div class="btn-group">
+                            <a asp-controller="Student" asp-action="Create" class="btn btn-primary">Add Student</a>
+                            <a asp-controller="Student" asp-action="Index" class="btn btn-primary">Student List</a>
+                        </div>
+                    </div>
+             </div>
+
+                <div class="action_item">
+                    <button class="accordion">Teacher</button>
+                    <div class="panel">
+                        <div class="btn-group">
+                            <a asp-controller="Teacher" asp-action="Create" class="btn btn-secondary">Add Teacher</a>
+                            <a asp-controller="Teacher" asp-action="Index" class="btn btn-secondary">Teacher List</a>
+                        </div>
+                    </div>
+               </div>
+
+                <div class="action_item">
+                    <button class="accordion">Subject</button>
+                    <div class="panel">
+                        <div class="btn-group">
+                            <a asp-controller="Subject" asp-action="Create" class="btn btn-success">Add Subject</a>
+                            <a asp-controller="Subject" asp-action="Index" class="btn btn-success">Subject List</a>
+                            <a asp-controller="SubjectTeacher" asp-action="Index" class="btn btn-success">SubjectTeacher List</a>
+                        </div>
+                    </div>
+               </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery script -->
+    <script>
+        $(document).ready(function () {
+            $('.accordion').click(function () {
+                $(this).toggleClass('active');
+                var panel = $(this).next('.panel');
+                panel.slideToggle();
+            });
+        });
+    </script>
+</body>
+</html>

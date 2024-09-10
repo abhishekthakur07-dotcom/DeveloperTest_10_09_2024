@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Developertest.Models.Teacher>
+
+<h1>Teachers List</h1>
+
+
+<!-- Teachers Table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var teacher in Model)
+        {
+            <tr>
+                <td>@teacher.Name</td>
+                <td>@teacher.Age</td>
+                <td>@teacher.Sex</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(teacher.ImagePath))
+                    {
+                        <img src="@teacher.ImagePath" alt="Teacher Image" style="width: 100px; height: auto;" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
